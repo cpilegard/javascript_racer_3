@@ -1,0 +1,30 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+
+th {
+  text-align: left;
+}
+
+body {
+/*  background-image:url('http://scenery-wallpapers.com/walls/green_grass_wallpaper-normal.jpg');
+  background-image:url('../grass.jpg');*/
+}
+
+.racer_table td {
+  height: 50px;
+  width: 70px;
+}
+
+.racer_table td.active {
+  background-image:url('http://icons.iconarchive.com/icons/martin-berube/animal/256/fox-icon.png');
+  background-size: 40px 50px;
+  /*background-color: blue;*/
+}
+
+#reset {
+  visibility: hidden;
+}
