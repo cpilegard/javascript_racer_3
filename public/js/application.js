@@ -31,7 +31,6 @@ $(document).ready(function(){
 
 function updatePlayerPosition(player, position) {
   if (position >= 30) {
-    // winner(player, position);
     won = true;
     winning_player = player;
     $('#reset').css('visibility', 'visible');
