@@ -21,8 +21,8 @@ post '/new' do
 end
 
 get '/start' do
-  @player1 = Player.find(session['player1'])
-  @player2 = Player.find(session['player2'])
+  # @player1 = Player.find(session['player1'])
+  # @player2 = Player.find(session['player2'])
 
   erb :start
 end
