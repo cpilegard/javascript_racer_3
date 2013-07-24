@@ -1,11 +1,21 @@
 $(document).ready(function() {
-	var player1 = new Player("first_player");
-	var player2 = new Player("second_player");
+	$('#submit').on('click', function(e) {
+		e.preventDefault();
+		var p1 = $('#p1').val();
+		var p2 = $('#p2').val();
 
-	var game = new Game(player1, player2);
-	game.log_players();
+		$('#pregame').hide();
+		$('.status').html('GO!').css('color', 'green');
 
-	$(document).on('keyup', function(event) {
-    game.onKeyUp(event.which);
-  });
+		var player1 = new Player(p1);
+		var player2 = new Player(p2);
+
+		var game = new Game(player1, player2);
+		game.render();
+		game.log_players();
+
+		$(document).on('keyup', function(event) {
+	    game.onKeyUp(event.which);
+	  });
+	});
 });

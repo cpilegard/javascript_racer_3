@@ -1,4 +1,4 @@
-// Game prototype
+// Game
 function Game(player1, player2) {
 	this.player1 = player1;
 	this.player2 = player2;
@@ -45,13 +45,13 @@ Game.prototype.log_players = function() {
 		data: {'player1': this.player1.name,
 					 'player2': this.player2.name}
 	}).done(function(result) {
-		// console.log(result);
+		console.log(result);
 	});
 }
 
 Game.prototype.log_game = function(winner, loser) {
 	var elapsed = new Date() - this.start_time;
-	$('.result').html('GAME OVER');
+	$('.status').html('GAME OVER').css('color', 'red');
 	$.ajax({
 		type:  'POST',
 		url:   '/game/over',
@@ -65,7 +65,7 @@ Game.prototype.log_game = function(winner, loser) {
 	});
 }
 
-// Player prototype
+// Player
 function Player(name) {
 	this.name = name;
 	this.position = 1;
