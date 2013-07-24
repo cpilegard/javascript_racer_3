@@ -1,6 +1,7 @@
 <div class='container'>
   <h3>Game Stats</h3>
   <p>Winner: <%= Player.find(@game.winner_id).name %></p>
+  <p>Loser:  <%= Player.find(@game.loser_id).name %></p>
   <p>Time: <%= @game.time %> seconds</p>
 
   <a href='/'>Create new players!</a>

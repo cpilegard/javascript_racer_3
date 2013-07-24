@@ -21,23 +21,21 @@ post '/new' do
 end
 
 get '/start' do
-  # @player1 = Player.find(session['player1'])
-  # @player2 = Player.find(session['player2'])
-
   erb :start
 end
 
 post '/game/over' do
-  winner = params[:winning_player]
-  time_finished = params[:time].to_f / 1000
-  winning_player_id = session[winner]
-  winning_player = Player.find(winning_player_id)
-  game = Game.create({winner_id: winning_player.id, time: time_finished.to_s})
-  Player.find(session['player1']).games << game
-  Player.find(session['player2']).games << game
+  winner = Player.where(name: params[:winner]).first
+  loser  = Player.where(name: params[:loser]).first
+  time   = params[:time].to_f / 1000
+
+  game = Game.create({winner_id: winner.id, loser_id: loser.id, time: time.to_s})
+  
+  winner.games << game
+  loser.games  << game
 
   content_type :json
-  {game_id: game.id.to_s, winner: winning_player.name}.to_json
+  {game_id: game.id.to_s}.to_json#, winner: winner.name, loser: loser.name}.to_json
 end
 
 get '/game/:id' do

@@ -1,3 +1,4 @@
+// Game prototype
 function Game(player1, player2) {
 	this.player1 = player1;
 	this.player2 = player2;
@@ -27,30 +28,40 @@ Game.prototype.render = function() {
 }
 
 Game.prototype.check_finished = function() {
-	if (this.player1.position === 30 || this.player2.position === 30) {
+	if (this.player1.position === 30) {
 		this.finished = true;
-		this.finish();
+		this.log_game(this.player1.name, this.player2.name);
+	}
+	else if (this.player2.position === 30) {
+		this.finished = true;
+		this.log_game(this.player2.name, this.player1.name);
 	} 
 }
 
-Game.prototype.start = function() {
+Game.prototype.log_players = function() {
 	$.ajax({
 		type:  'POST',
 		url:   '/new',
 		data: {'player1': this.player1.name,
 					 'player2': this.player2.name}
-	}).done(function() {
+	}).done(function(result) {
+		// console.log(result);
 	});
 }
 
-Game.prototype.finish = function(winner) {
+Game.prototype.log_game = function(winner, loser) {
 	var elapsed = new Date() - this.start_time;
 	$('.result').html('GAME OVER');
 	$.ajax({
 		type:  'POST',
 		url:   '/game/over',
-		data: {'winning_player': winner,
+		data: {'winner': winner,
+					 'loser' : loser,
 					 'time': elapsed}
+	}).done(function(result) {
+		$('a').attr('href', '/game/' + result.game_id);
+		$('a').text('View game stats');
+		$('a').show();
 	});
 }
 

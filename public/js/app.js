@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var player2 = new Player("second_player");
 
 	var game = new Game(player1, player2);
-	game.start();
+	game.log_players();
 
 	$(document).on('keyup', function(event) {
     game.onKeyUp(event.which);
